@@ -3,200 +3,231 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="DCS Tool PH Pro v4.3 GOLD – Ultimate Offline PID & Loop Tool">
-<meta name="theme-color" content="#00d4ff">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="DCS Pro">
-<meta name="color-scheme" content="dark">
-
+<title>Philippine Flag DCS Engineer Tool</title>
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
-<link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
-<link rel="icon" href="icon-192.png" type="image/png">
-
-<title>DCS Tool PH Pro v4.3 GOLD – Pinoy I&C Edition</title>
-
+<meta name="theme-color" content="#003087">
 <style>
-* { box-sizing:border-box; margin:0; padding:0; }
-body { background:#0a0a0a; color:#f0f0f0; font-family:'Segoe UI',sans-serif; min-height:100vh; padding:15px; line-height:1.6; }
-.container { max-width:1100px; margin:auto; }
-h1 { text-align:center; color:#00eeff; text-shadow:0 0 15px rgba(0,238,255,0.3); margin:20px 0; font-size:26px; }
-h2 { color:#00d4ff; margin:30px 0 15px; font-size:22px; border-bottom:2px solid #2a2a3e; padding-bottom:8px; }
-.card { background:#1a1a2e; border:1px solid #2a2a3e; padding:25px; border-radius:14px; margin-bottom:25px; box-shadow:0 3px 12px rgba(0,0,0,0.6); }
-label { display:block; margin:12px 0 5px; font-weight:600; color:#e0e0e0; }
-input,select,textarea { width:100%; padding:12px 15px; margin-top:6px; background:#16161f; color:#e0e0e0; border:2px solid #333; border-radius:8px; font-size:15px; }
-input:focus,select:focus,textarea:focus { outline:none; border-color:#00d4ff !important; box-shadow:0 0 0 3px rgba(0,212,255,0.3) !important; }
-input:invalid { border-color:#ff4444; }
-button { background:linear-gradient(135deg,#0077cc,#00aaff); color:white; padding:11px 18px; margin:12px 6px 0 0; border:none; border-radius:8px; cursor:pointer; font-weight:600; }
-button:hover { filter:brightness(1.1); }
-button:disabled { opacity:0.5; cursor:not-allowed; }
-.btn-copy { background:#444; font-size:12px; padding:6px 12px; }
-.input-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; margin:10px 0; }
-textarea[readonly] { background:#111118; min-height:120px; font-family:'Courier New',monospace; white-space:pre-wrap; word-break:break-word; }
-.warning { color:#ff9966; font-weight:bold; margin-top:10px; display:none; }
-.install-banner { background:linear-gradient(135deg,#0077cc,#00aaff); color:white; padding:15px 20px; border-radius:12px; margin-bottom:20px; display:none; justify-content:space-between; align-items:center; }
-.install-banner.show { display:flex; }
-.install-banner button { background:white; color:#0077cc; padding:10px 20px; border-radius:8px; }
-#euRange { display:none; }
+  :root{--pri:#4fc3f7;--suc:#4caf50;--dan:#d32f2f;--bg:#0f3460;--dark:#003087;--light:#e0e0e0}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--light);padding:15px;min-height:100vh;position:relative}
+  .c{max-width:1000px;margin:auto;background:var(--bg);border-radius:15px;overflow:hidden;box-shadow:0 10px 40px #0008}
+  header{background:var(--dark);padding:25px;text-align:center;color:#fff;border-bottom:8px solid #fce300;position:relative}
+  header img{width:90px;height:90px;border-radius:50%;border:4px solid #fff;position:absolute;top:15px;right:15px;object-fit:cover}
+  h1{font-size:22px;margin:8px 0}
+  nav[role="tablist"]{display:flex;background:#1a1a2e;overflow-x:auto}
+  .tab{flex:1;padding:16px 20px;background:#1a1a2e;color:#ccc;border:none;font-weight:bold;cursor:pointer;transition:.2s}
+  .tab:focus{outline:3px solid var(--pri);outline-offset:-3px}
+  .tab.active,.tab[aria-selected="true"]{color:var(--pri);border-bottom:4px solid var(--pri);background:#0f3460}
+  .sec{padding:20px;display:none;background:#1a1a2e;margin:15px;border-radius:12px;border-left:5px solid var(--suc)}
+  .sec.active{display:block}
+  .sec[aria-hidden="true"]{display:none}
+  label{display:block;margin:12px 0 6px;color:var(--pri);font-weight:bold}
+  input,select{width:100%;padding:14px;background:var(--dark);border:2px solid var(--dark);border-radius:8px;color:#fff;font-size:16px}
+  input:focus, select:focus{border-color:var(--pri);outline:none}
+  .row{display:grid;gap:15px;grid-template-columns:1fr}
+  @media(min-width:600px){.row{grid-template-columns:1fr 1fr}}
+  .btn{width:100%;padding:16px;margin:12px 0;border:none;border-radius:8px;font-size:17px;font-weight:bold;cursor:pointer}
+  .pri{background:var(--pri);color:#000}
+  .suc{background:var(--suc);color:#fff}
+  .dan{background:var(--dan);color:#fff}
+  .res{background:var(--dark);padding:20px;border-radius:10px;margin-top:20px;position:relative}
+  .it{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #0f3460;font-size:16px}
+  .del-btn{position:absolute;top:10px;right:10px;background:var(--dan);color:#fff;padding:6px 10px;border:none;border-radius:6px;font-size:12px;cursor:pointer}
+  .check-item{display:flex;align-items:center;margin:12px 0;background:var(--dark);padding:12px;border-radius:8px}
+  .check-item input{margin-right:15px;width:24px;height:24px;accent-color:var(--suc)}
+  #toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:16px 24px;border-radius:50px;box-shadow:0 4px 20px #0008;z-index:9999;opacity:0;transition:opacity .3s}
+  #toast.show{opacity:1}
 </style>
 </head>
-<body>
-<main class="container" id="main">
-<header>
-  <h1>DCS Tool PH Pro v4.3 GOLD – Pinoy I&C Edition</h1>
-  <div id="installBanner" class="install-banner" aria-live="polite">
-    <span>Install as App (100% Offline)</span>
-    <button id="installBtn">Install</button>
+<body onload="init()">
+
+<div id="toast"></div>
+
+<div class="c">
+  <header>
+    <h1>Philippine Flag DCS Engineer Tool</h1>
+    <p>PID • Converter • Checklist • 100% Offline</p>
+    <img src="IMG_4645.jpeg" alt="Philippine DCS Logo">
+  </header>
+
+  <nav role="tablist" aria-label="Main tabs">
+    <button id="tab-p0" class="tab active" type="button" role="tab" aria-selected="true" aria-controls="p0">PID Calculator</button>
+    <button id="tab-p1" class="tab" type="button" role="tab" aria-selected="false" aria-controls="p1">Unit Converter</button>
+    <button id="tab-p2" class="tab" type="button" role="tab" aria-selected="false" aria-controls="p2">Loop Checklist</button>
+    <button id="tab-p3" class="tab" type="button" role="tab" aria-selected="false" aria-controls="p3">Saved Tunings</button>
+  </nav>
+
+  <div id="p0" class="sec active" role="tabpanel" aria-labelledby="tab-p0">
+    <label for="tag">Loop Tag</label><input id="tag" type="text" placeholder="e.g. FIC-101">
+    <div class="row">
+      <div><label for="kp">Process Gain Kp</label><input id="kp" type="number" step="0.01"></div>
+      <div><label for="dt">Dead Time θ (s)</label><input id="dt" type="number" step="0.1"></div>
+    </div>
+    <div class="row">
+      <div><label for="tc">Time Constant τ (s)</label><input id="tc" type="number" step="0.1"></div>
+      <div><label for="met">Method</label>
+        <select id="met" onchange="document.getElementById('laf').style.display=this.value==='la'?'block':'none'">
+          <option value="zn">Ziegler-Nichols</option>
+          <option value="cc">Cohen-Coon</option>
+          <option value="la">Lambda Tuning</option>
+        </select>
+      </div>
+    </div>
+    <div id="laf" style="display:none"><label for="lf">Lambda Factor</label><input id="lf" type="number" step="0.1" value="1"></div>
+    <button class="btn pri" type="button" onclick="calc()">Calculate PID</button>
+
+    <div id="res" class="res" style="display:none" data-ready="false">
+      <h3 id="mt" style="color:var(--suc)"></h3>
+      <div class="it"><span>Kc</span><span id="kc">-</span></div>
+      <div class="it"><span>Ti (s)</span><span id="ti">-</span></div>
+      <div class="it"><span>Td (s)</span><span id="td">-</span></div>
+      <button class="btn suc" type="button" onclick="sav()">Save</button>
+      <button class="btn suc" type="button" onclick="csv()">Export CSV</button>
+      <button class="btn pri" type="button" onclick="wa()">Share WhatsApp</button>
+    </div>
   </div>
-</header>
 
-<noscript><div role="alert" style="background:#440000;color:#ffaaaa;padding:20px;border-radius:12px;text-align:center;">JavaScript required.</div></noscript>
+  <div id="p1" class="sec" role="tabpanel" aria-labelledby="tab-p1">
+    <label for="typ">Type</label>
+    <select id="typ" onchange="up()">
+      <option value="pres">Pressure</option>
+      <option value="temp">Temperature</option>
+      <option value="flow">Flow</option>
+      <option value="curr">Current 4-20mA</option>
+      <option value="pow">Power</option>
+    </select>
+    <div class="row">
+      <div><label for="fv">Value</label><input id="fv" type="number" step="any" oninput="cv()"></div>
+      <div><label for="fu">From</label><select id="fu" onchange="cv()"></select></div>
+    </div>
+    <div class="row">
+      <div><label for="tv">Result</label><input id="tv" readonly style="font-size:22px;color:var(--suc);background:var(--dark)"></div>
+      <div><label for="tu">To</label><select id="tu" onchange="cv()"></select></div>
+    </div>
+  </div>
 
-<!-- All sections same as before (PID, Auto-Tuning, Converter, Tuning Library) -->
-<!-- Only showing key changed parts below for brevity -->
+  <div id="p2" class="sec" role="tabpanel" aria-labelledby="tab-p2">
+    <h2 style="color:var(--suc)">Loop Commissioning Checklist</h2>
+    <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Field instrument calibration current</label></div>
+    <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Transmitter zero & span verified</label></div>
+    <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Wiring & terminations OK</label></div>
+    <div class="check-item"><input type="checkbox" id="c4"><label for="c4">I/O card diagnostics clear</label></div>
+    <div class="check-item"><input type="checkbox" id="c5"><label for="c5">DCS scaling & alarms correct</label></div>
+    <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Valve full stroke test done</label></div>
+    <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Valve stiction <2%</label></div>
+    <div class="check-item"><input type="checkbox" id="c8"><label for="c8">Positioner & air supply OK</label></div>
+    <button class="btn dan" type="button" onclick="resetCheck()">Reset All</button>
+  </div>
 
-<!-- Unit Converter section (HTML unchanged) -->
-<section class="card" aria-labelledby="conv-h">
-  <h2 id="conv-h">Unit Converter</h2>
-  <form id="fullConverterForm">
-    <!-- same inputs -->
-    <div id="convertWarning" class="warning">Invalid combination</div>
-    <button type="submit">Convert</button>
-  </form>
-  <button type="button" class="btn-copy" data-target="fullConvResult" disabled>Copy Result</button>
-  <textarea id="fullConvResult" readonly aria-live="polite"></textarea>
-</section>
-
-<!-- Tuning Library (unchanged HTML) -->
-
-</main>
-
-<div id="announce" aria-live="polite" style="position:absolute;left:-9999px;"></div>
+  <div id="p3" class="sec" role="tabpanel" aria-labelledby="tab-p3">
+    <button class="btn dan" type="button" onclick="if(confirm('Clear all?'))localStorage.removeItem('dcs_tunings'),load()">Clear All</button>
+    <div id="list" style="margin-top:20px"></div>
+  </div>
+</div>
 
 <script>
-const TUNES_KEY = "dcs_ph_tunes_v43";
-let TUNES = JSON.parse(localStorage.getItem(TUNES_KEY) || "{}");
-let pidMemory = JSON.parse(localStorage.getItem("dcs_pid_mem") || "{}");
-let deferredPrompt = null;
+const conv={pres:{u:['bar','kg/cm²','psi','kPa'],f:{bar:1,'kg/cm²':0.980665,psi:14.5038,kPa:100}},
+           temp:{u:['°C','°F','K']},
+           flow:{u:['m³/h','L/min','US gpm'],f:{'m³/h':1,'L/min':0.06,'US gpm':0.2271}},
+           curr:{u:['mA','%'],f:{mA:1,'%':0.0625}},
+           pow:{u:['MW','kW','HP'],f:{MW:1,kW:1000,HP:1359.62}}};
 
-function announce(t) { document.getElementById('announce').textContent = t; }
+// Toast instead of alert
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000); }
 
-async function copyResult(id) {
-  const text = document.getElementById(id)?.value?.trim();
-  if (!text) { announce("Nothing to copy"); return; }
-  try {
-    if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
-    else { const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); }
-    announce("Copied!");
-  } catch { alert("Copy failed"); }
+function tab(i){
+  document.querySelectorAll('.sec').forEach((p,j)=>{ const a=j===i; p.classList.toggle('active',a); p.setAttribute('aria-hidden',a?'false':'true'); });
+  document.querySelectorAll('.tab').forEach((b,j)=>{ const s=j===i; b.classList.toggle('active',s); b.setAttribute('aria-selected',s?'true':'false'); b.setAttribute('aria-current',s?'true':null); });
+  const panel=document.getElementById('p'+i);
+  if(panel){ const first=panel.querySelector('button,input,select,[tabindex]:not([tabindex="-1"])'); if(first) first.focus(); }
+  if(i===1) up();
+  if(i===2) loadCheck();
 }
 
-function updateCopyButtons() {
-  document.querySelectorAll('.btn-copy[data-target]').forEach(b => {
-    b.disabled = !document.getElementById(b.dataset.target)?.value?.trim();
-  });
-}
-updateCopyButtons();
-
-// Clear aria-invalid on input
-document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', () => el.removeAttribute('aria-invalid')));
-
-// EU range toggle
-function toggleEU() {
-  const from = document.getElementById('fromUnit').value;
-  const to = document.getElementById('toUnit').value;
-  const show = ['ma','percent','eu'].some(u => u===from || u===to);
-  document.getElementById('euRange').style.display = show ? 'grid' : 'none';
-}
-document.getElementById('fromUnit').addEventListener('change', toggleEU);
-document.getElementById('toUnit').addEventListener('change', toggleEU);
-toggleEU();
-
-// === FIXED & PERFECT UNIT CONVERTER ===
-const PRESSURE = ['bar','kgcm2','psi','kpa'];
-const P_FACT = { bar:1, kgcm2:0.980665, psi:14.5038, kpa:100 };
-
-function isValidPair(f,t){
-  if (f===t) return true;
-  const a=PRESSURE.includes(f), b=PRESSURE.includes(t);
-  if (a && b) return true;
-  const set = new Set([f,t]);
-  return set.has('ma') && set.has('percent') ||
-         set.has('percent') && set.has('eu') ||
-         set.has('ma') && set.has('eu');
+function calc(){
+  const kp=+document.getElementById('kp').value, dt=+document.getElementById('dt').value, tc=+document.getElementById('tc').value;
+  const m=document.getElementById('met').value;
+  if(isNaN(kp)||isNaN(dt)||isNaN(tc)) return toast('Fill all fields');
+  if(kp===0||dt===0) return toast('Kp and Dead Time must be > 0');
+  let kc,ti=0,td=0;
+  if(m==='zn'){kc=1.2*tc/(kp*dt);ti=2*dt;td=0.5*dt;}
+  else if(m==='cc'){let r=dt/tc;kc=(tc/(kp*dt))*(1+r/3);ti=dt*(32+6*r)/(13+8*r);td=dt*4/(11+2*r);}
+  else{const lf=+document.getElementById('lf').value||1;kc=tc/(kp*(lf*tc+dt));ti=tc;}
+  document.getElementById('kc').textContent=isFinite(kc)?kc.toFixed(4):'-';
+  document.getElementById('ti').textContent=isFinite(ti)?ti.toFixed(2):'-';
+  document.getElementById('td').textContent=isFinite(td)?td.toFixed(2):'-';
+  document.getElementById('mt').textContent=m==='zn'?'Ziegler-Nichols':m==='cc'?'Cohen-Coon':'Lambda Tuning';
+  const res=document.getElementById('res'); res.style.display='block'; res.dataset.ready='true';
 }
 
-document.getElementById('fullConverterForm').addEventListener('submit', e=>{
-  e.preventDefault();
-  const val=+document.getElementById('convVal').value;
-  const from=document.getElementById('fromUnit').value;
-  const to=document.getElementById('toUnit').value;
-  const low=+document.getElementById('euLow').value;
-  const high=+document.getElementById('euHigh').value;
-  const span=high-low;
-  const warn=document.getElementById('convertWarning');
+function sav(){
+  if(document.getElementById('res').dataset.ready!=='true') return toast('Calculate first!');
+  let d=JSON.parse(localStorage.getItem('dcs_tunings')||'[]');
+  d.push({date:new Date().toLocaleString('en-PH'),tag:document.getElementById('tag').value||'No Tag',method:document.getElementById('met').value,
+          kc:document.getElementById('kc').textContent,ti:document.getElementById('ti').textContent,td:document.getElementById('td').textContent});
+  localStorage.setItem('dcs_tunings',JSON.stringify(d));
+  toast('Saved successfully!');
+  tab(3);
+}
 
-  if (!isValidPair(from,to)) {
-    warn.textContent='Invalid combination. Allowed: pressure↔pressure, mA↔%, %↔EU, mA↔EU';
-    warn.style.display='block'; return;
-  }
-  warn.style.display='none';
+function del(index){
+  let d=JSON.parse(localStorage.getItem('dcs_tunings')||'[]');
+  d.splice(d.length-1-index,1);
+  localStorage.setItem('dcs_tunings',JSON.stringify(d));
+  toast('Deleted!');
+  load();
+}
 
-  let result;
-  if (PRESSURE.includes(from) && PRESSURE.includes(to)) {
-    result = val * P_FACT[from] / P_FACT[to];
-  } else {
-    let percent;
-    if (from==='ma') percent = (val-4)/16*100;
-    else if (from==='percent') percent = val;
-    else if (from==='eu') percent = span ? (val-low)/span*100 : 0;
-
-    if (to==='percent') result = percent;
-    else if (to==='ma') result = 4 + percent/100*16;
-    else if (to==='eu') result = low + percent/100*span;
-  }
-
-  document.getElementById('fullConvResult').value = `  = 'NaN' `;
-  updateCopyButtons(); announce('Converted');
-});
-
-// === FIXED INSTALL BANNER (outcome + hide forever) ===
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
-
-if (!localStorage.getItem('dcs_hide_banner')) {
-  window.addEventListener('beforeinstallprompt', e=>{
-    e.preventDefault(); deferredPrompt=e;
-    document.getElementById('installBanner').classList.add('show');
+function escapeHtml(t){return String(t).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function load(){
+  const d=JSON.parse(localStorage.getItem('dcs_tunings')||'[]');
+  const list=document.getElementById('list'); list.innerHTML='';
+  if(!d.length){list.innerHTML='<p style="text-align:center;color:#aaa">No saved tunings yet</p>';return;}
+  d.slice().reverse().forEach((x,i)=>{
+    const div=document.createElement('div');div.className='res';
+    const b=document.createElement('b');b.textContent=x.tag||'No Tag';
+    const p=document.createElement('div');p.style.marginTop='6px';
+    p.innerHTML=`<br> → Kc= | Ti=s | Td=s`;
+    const delBtn=document.createElement('button');delBtn.textContent='Delete';delBtn.className='del-btn';
+    delBtn.onclick=()=>del(i);
+    div.append(b,p,delBtn); list.appendChild(div);
   });
 }
 
-document.getElementById('installBtn').addEventListener('click', async()=>{
-  document.getElementById('installBanner').classList.remove('show');
-  localStorage.setItem('dcs_hide_banner','1');
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    announce(outcome==='accepted'?'Installed!':'Install cancelled');
-    deferredPrompt=null;
-  }
-});
+function escapeCSV(s){return `""`;}
+function csv(){
+  const d=JSON.parse(localStorage.getItem('dcs_tunings')||'[]');
+  if(!d.length) return toast('No data to export');
+  let c="Date,Tag,Method,Kc,Ti,Td\n"+d.map(x=>[x.date,x.tag,x.method,x.kc,x.ti,x.td].map(escapeCSV).join(',')).join('\n');
+  const blob=new Blob([c],{type:'text/csv'}), url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download='DCS_Tunings_PH.csv'; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  toast('CSV exported!');
+}
 
-// === ROBUST CSV EXPORT ===
-document.getElementById('exportBtn').addEventListener('click', async()=>{
-  const csv = "Tag,Kp,Ki,Kd\n" + Object.entries(TUNES)
-    .map(([t,v])=>`,,,`).join('\n');
-  try {
-    if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(csv);
-    else { const ta=document.createElement('textarea'); ta.value=csv; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); }
-    announce("CSV copied!");
-  } catch { alert("Copy failed"); }
-});
+function wa(){
+  const d=JSON.parse(localStorage.getItem('dcs_tunings')||'[]');
+  if(!d.length) return toast('No data');
+  const l=d[d.length-1];
+  window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(`Philippine Flag DCS Result\nLoop: \n\nKc= | Ti=s | Td=s\n`),'_blank','noopener');
+}
 
-// All other calculators (PID, Z-N, Lambda, Tuning Library) — 100% unchanged & working perfectly
+function up(){ const t=document.getElementById('typ').value; const u=conv[t].u; ['fu','tu'].forEach(id=>document.getElementById(id).innerHTML=u.map(x=>`<option></option>`).join('')); document.getElementById('tu').selectedIndex=1;cv(); }
+function cv(){ const v=+document.getElementById('fv').value; if(isNaN(v)){document.getElementById('tv').value='';return;} const t=document.getElementById('typ').value; let r; if(t==='temp'){ let c=document.getElementById('fu').value==='°C'?v:document.getElementById('fu').value==='°F'?(v-32)*5/9:v-273.15; r=document.getElementById('tu').value==='°C'?c:document.getElementById('tu').value==='°F'?c*9/5+32:c+273.15; }else if(t==='curr'){ let b=document.getElementById('fu').value==='mA'?v:(v/100)*16+4; r=document.getElementById('tu').value==='mA'?b:((b-4)/16)*100; }else{ const f=conv[t].f; r=v*(f[document.getElementById('fu').value]/f[document.getElementById('tu').value]); } document.getElementById('tv').value=isFinite(r)?r.toFixed(6):''; }
 
-document.querySelectorAll('.btn-copy').forEach(b=>b.addEventListener('click',()=>copyResult(b.dataset.target)));
-document.querySelectorAll('form').forEach(f=>f.addEventListener('reset',()=>setTimeout(()=>{document.querySelectorAll('textarea[readonly]').forEach(t=>t.value=''); updateCopyButtons();},0)));
+function loadCheck(){for(let i=1;i<=8;i++)if(localStorage.getItem('check'+i)==='true')document.getElementById('c'+i).checked=true;}
+function saveCheck(){for(let i=1;i<=8;i++)localStorage.setItem('check'+i,document.getElementById('c'+i).checked);}
+function resetCheck(){if(confirm('Reset checklist?'))for(let i=1;i<=8;i++){document.getElementById('c'+i).checked=false;localStorage.removeItem('check'+i);}}
+document.querySelectorAll('#p2 input[type=checkbox]').forEach(c=>c.onchange=saveCheck);
+
+function init(){
+  up();load();loadCheck();
+  document.querySelectorAll('.sec').forEach((p,i)=>p.setAttribute('aria-hidden',i===0?'false':'true'));
+  const tabs=Array.from(document.querySelectorAll('.tab'));
+  tabs.forEach((b,i)=>b.addEventListener('click',()=>tab(i)));
+  tabs.forEach((b,i)=>b.addEventListener('keydown',e=>{ if(['ArrowRight','ArrowLeft','Home','End'].includes(e.key)){ e.preventDefault(); let n=i; if(e.key==='ArrowRight')n=(i+1)%tabs.length; else if(e.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length; else if(e.key==='Home')n=0; else if(e.key==='End')n=tabs.length-1; tabs[n].focus(); tab(n); }}));
+  if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+}
 </script>
 </body>
 </html>
